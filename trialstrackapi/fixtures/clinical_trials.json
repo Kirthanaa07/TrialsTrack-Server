@@ -3,7 +3,7 @@
     "model": "trialstrackapi.clinicaltrial",
     "pk": 1,
     "fields": {
-      "uid": "study_001",
+      "user": "1",
       "nct_id": "NCT001",
       "title": "Example Study 1",
       "study_type": 5,
@@ -20,7 +20,7 @@
     "model": "trialstrackapi.clinicaltrial",
     "pk": 2,
     "fields": {
-      "uid": "study_002",
+      "user": "1",
       "nct_id": "NCT002",
       "title": "Example Study 2",
       "study_type": 4,
@@ -37,7 +37,7 @@
     "model": "trialstrackapi.clinicaltrial",
     "pk": 3,
     "fields": {
-      "uid": "study_003",
+      "user": "1",
       "nct_id": "NCT003",
       "title": "Example Study 3",
       "study_type": 3,
@@ -54,7 +54,7 @@
     "model": "trialstrackapi.clinicaltrial",
     "pk": 4,
     "fields": {
-      "uid": "study_004",
+      "user": "1",
       "nct_id": "NCT004",
       "title": "Example Study 4",
       "study_type": 2,
@@ -71,7 +71,7 @@
     "model": "trialstrackapi.clinicaltrial",
     "pk": 5,
     "fields": {
-      "uid": "study_005",
+      "user": "1",
       "nct_id": "NCT005",
       "title": "Example Study 5",
       "study_type": 1,
