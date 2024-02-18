@@ -1,0 +1,47 @@
+[
+  {
+    "model": "trialstrackapi.clinicaltriallocation",
+    "pk": 1,
+    "fields": {
+      "clinical_trial": "1",
+      "location": "1",
+      "status": "Active"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocation",
+    "pk": 2,
+    "fields": {
+      "clinical_trial": "2",
+      "location": "2",
+      "status": "Recruiting"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocation",
+    "pk": 3,
+    "fields": {
+      "clinical_trial": "3",
+      "location": "3",
+      "status": "Completed"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocation",
+    "pk": 4,
+    "fields": {
+      "clinical_trial": "4",
+      "location": "4",
+      "status": "Active, not recruiting"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocation",
+    "pk": 5,
+    "fields": {
+      "clinical_trial": "5",
+      "location": "5",
+      "status": "Withdrawn"
+    }
+  }
+]
