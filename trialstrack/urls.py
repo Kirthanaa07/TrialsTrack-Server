@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from trialstrackapi.views import LocationView, ClinicalTrialView
+from trialstrackapi.views import LocationView, ClinicalTrialView, StudyTypeView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"locations", LocationView, "location")
 router.register(r"clinical_trials", ClinicalTrialView, "clinical_trial")
+router.register(r"study_types", StudyTypeView, "study_type")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
