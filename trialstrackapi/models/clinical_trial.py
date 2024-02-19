@@ -1,9 +1,10 @@
 from django.db import models
 from .study_type import StudyType
+from .user import User
 
 class ClinicalTrial(models.Model):
   
-  uid = models.CharField(max_length=50)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
   nct_id = models.CharField(max_length=50)
   title = models.CharField(max_length=50)
   study_type = models.ForeignKey(StudyType, on_delete=models.CASCADE)
