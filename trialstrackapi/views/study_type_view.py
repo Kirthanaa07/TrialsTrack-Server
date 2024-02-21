@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from http import HTTPMethod
 from rest_framework import serializers, status
 from trialstrackapi.models import StudyType
+from trialstrackapi.serializers import StudyTypeSerializer
 
 class StudyTypeView(ViewSet):
   def retrieve(self, request, pk):
@@ -40,8 +41,3 @@ class StudyTypeView(ViewSet):
     study_type.delete()
     return Response(None, status=status.HTTP_204_NO_CONTENT)
   
-class StudyTypeSerializer(serializers.ModelSerializer):
-  
-  class Meta:
-    model = StudyType
-    fields = ("id", "name")

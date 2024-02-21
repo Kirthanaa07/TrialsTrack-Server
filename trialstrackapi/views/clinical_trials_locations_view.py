@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from http import HTTPMethod
 from rest_framework import serializers, status
 from trialstrackapi.models import ClinicalTrialLocation, ClinicalTrial, Location
+from trialstrackapi.serializers import ClinicalTrialLocationSerializer
 
 
 class ClinicalTrialLocationView(ViewSet):
@@ -48,7 +49,3 @@ class ClinicalTrialLocationView(ViewSet):
         clinical_trial_location = ClinicalTrialLocation.objects.get(pk=pk)
         clinical_trial_location.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-class ClinicalTrialLocationSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = ClinicalTrialLocation
-    fields = ("id","clinical_trial", "location", "status")
