@@ -20,12 +20,15 @@ class ClinicalTrialLocationView(ViewSet):
 
     def list(self, request):
         clinical_trial_location = ClinicalTrialLocation.objects.all()
+        location = request.query_params.get('location', None)
+        if location is not None:
+            location = location.filter(location, many=True)
         serializer = ClinicalTrialLocationSerializer(clinical_trial_location, many=True)
         return Response(serializer.data)
 
     def create(self, request):
-        clinical_trial = ClinicalTrial.objects.get(pk=request.data["clinical_trial"])
-        location = Location.objects.get(pk=request.data["location"])
+        clinical_trial = ClinicalTrial.objects.get(pk=request.data["clinical_trial_id"])
+        location = Location.objects.get(pk=request.data["location_id"])
         clinical_trial_location = ClinicalTrialLocation.objects.create(
             status=request.data["status"],
             location=location,

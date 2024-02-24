@@ -32,8 +32,6 @@ class ClinicalTrialView(ViewSet):
       nct_id=request.data["nct_id"],
       title=request.data["title"],
       overall_status=request.data["overall_status"],
-      brief_summary=request.data["brief_summary"],
-      detail_description=request.data["detail_description"],
       phase=request.data["phase"],
       eligibility=request.data["eligibility"],
       study_first_submit_date=request.data["study_first_submit_date"],
@@ -49,8 +47,6 @@ class ClinicalTrialView(ViewSet):
     clinical_trial.nct_id = request.data["nct_id"]
     clinical_trial.title = request.data["title"]
     clinical_trial.overall_status = request.data["overall_status"]
-    clinical_trial.brief_summary = request.data["brief_summary"]
-    clinical_trial.detail_description = request.data["detail_description"]
     clinical_trial.phase = request.data["phase"]
     clinical_trial.eligibility = request.data["eligibility"]
     clinical_trial.study_first_submit_date = request.data["study_first_submit_date"]

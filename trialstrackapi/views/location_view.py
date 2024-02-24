@@ -58,6 +58,6 @@ class LocationView(ViewSet):
 class LocationSerializer(serializers.ModelSerializer):
   class Meta:
     model = Location
-    fields = ("id", "user", "name", "address", "city", "state", "zip", "country")  
+    fields = ("id", "name", "address", "city", "state", "zip", "country")  
       
     
