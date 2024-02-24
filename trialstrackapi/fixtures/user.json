@@ -3,7 +3,7 @@
     "model": "trialstrackapi.user",
     "pk": 1,
     "fields": {
-      "uid": 1,
+      "uid": "EEvVaPbpm6dsCkIU3UddvspLupx1",
       "name": "kirthana",
       "role": "admin"
     }

@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from http import HTTPMethod
 from rest_framework import serializers, status
 from trialstrackapi.models import Location, User
+from trialstrackapi.serializers import LocationSerializer
 
 class LocationView(ViewSet):
   def retrieve(self, request, pk):
@@ -22,7 +23,7 @@ class LocationView(ViewSet):
     return Response(serializer.data)
   
   def create(self, request):
-    user = User.objects.get(uid=request.data["userId"])
+    user = User.objects.get(pk=request.data["user_id"])
     location = Location.objects.create(
       name=request.data["name"],
       address=request.data["address"],
@@ -43,7 +44,7 @@ class LocationView(ViewSet):
     location.state = request.data["state"]
     location.zip = request.data["zip"]
     location.country = request.data["country"]
-    user = User.objects.get(pk=request.data["userId"])
+    user = User.objects.get(pk=request.data["user_id"])
     location.user = user
     location.save()
     
@@ -57,6 +58,6 @@ class LocationView(ViewSet):
 class LocationSerializer(serializers.ModelSerializer):
   class Meta:
     model = Location
-    fields = ("id", "user", "name", "address", "city", "state", "zip", "country")  
+    fields = ("id", "name", "address", "city", "state", "zip", "country")  
       
     
