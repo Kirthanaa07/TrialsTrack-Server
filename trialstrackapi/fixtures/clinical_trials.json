@@ -5,13 +5,13 @@
     "fields": {
       "user": 1,
       "nct_id": "NCT001",
-      "title": "Example Study 1",
+      "title": "Pain Relief Study",
       "study_type": 5,
       "overall_status": "Recruiting",
       "brief_summary": "This is a brief summary of Example Study 1.",
       "detail_description": "Pain Relief Study: This trial aims to evaluate the effectiveness of various pain management techniques or medications in alleviating chronic or acute pain. It may involve comparing different treatment methods, dosages, or administration routes to identify the most efficient and safe options for pain relief.",
       "phase": "Phase 2",
-      "eligibility": "Eligibility criteria for Example Study 1.",
+      "eligibility": "Age between 18 and 65 years.",
       "study_first_submit_date": "2023-01-15",
       "last_update_submit_date": "2023-07-20"
     }
@@ -22,13 +22,13 @@
     "fields": {
       "user": 1,
       "nct_id": "NCT002",
-      "title": "Example Study 2",
+      "title": "Diabetes Prevention Trial",
       "study_type": 4,
       "overall_status": "Active, not recruiting",
       "brief_summary": "This is a brief summary of Example Study 2.",
       "detail_description": "Diabetes Prevention Trial: This trial focuses on strategies to prevent the onset of type 2 diabetes, often through lifestyle interventions such as diet modification, exercise, and weight management. The goal is to assess the effectiveness of these interventions in reducing the risk of developing diabetes in individuals with prediabetes or other risk factors.",
       "phase": "Phase 3",
-      "eligibility": "Eligibility criteria for Example Study 2.",
+      "eligibility": "Stable blood pressure control for at least 4 weeks on current antihypertensive medication regimen.",
       "study_first_submit_date": "2022-11-10",
       "last_update_submit_date": "2023-06-30"
     }
@@ -39,13 +39,13 @@
     "fields": {
       "user": 1,
       "nct_id": "NCT003",
-      "title": "Example Study 3",
+      "title": "Cardio Medication Trial",
       "study_type": 3,
       "overall_status": "Completed",
       "brief_summary": "This is a brief summary of Example Study 3.",
       "detail_description": "Cardio Medication Trial: This trial investigates the safety and efficacy of a new medication or treatment regimen for cardiovascular conditions such as hypertension, heart disease, or stroke. It may involve testing the effects of the medication on blood pressure, cholesterol levels, or other cardiovascular markers to determine its potential benefits and risks.",
       "phase": "",
-      "eligibility": "Eligibility criteria for Example Study 3.",
+      "eligibility": "Willingness to comply with study procedures and follow-up visits.",
       "study_first_submit_date": "2022-12-05",
       "last_update_submit_date": "2023-08-15"
     }
@@ -56,13 +56,13 @@
     "fields": {
       "user": 1,
       "nct_id": "NCT004",
-      "title": "Example Study 4",
+      "title": "Anxiety Therapy Study",
       "study_type": 2,
       "overall_status": "Active",
-      "brief_summary": "This is a brief summary of Example Study 4.",
+      "brief_summary": "Stable blood pressure control for at least 4 weeks on current antihypertensive medication regimen.",
       "detail_description": "Anxiety Therapy Study: This trial examines the effectiveness of different therapeutic approaches, such as cognitive-behavioral therapy (CBT), medication, or alternative therapies, in treating anxiety disorders. It aims to assess the impact of these interventions on symptom severity, quality of life, and overall mental health outcomes.",
       "phase": "Phase 1/Phase 2",
-      "eligibility": "Eligibility criteria for Example Study 4.",
+      "eligibility": "Willingness to comply with study procedures and follow-up visits.",
       "study_first_submit_date": "2023-02-28",
       "last_update_submit_date": "2023-09-20"
     }
@@ -73,13 +73,64 @@
     "fields": {
       "user": 1,
       "nct_id": "NCT005",
-      "title": "Example Study 5",
+      "title": "Telehealth Program Trial",
       "study_type": 1,
       "overall_status": "Withdrawn",
       "brief_summary": "This is a brief summary of Example Study 5.",
       "detail_description": "Telehealth Program Trial: This trial evaluates the efficacy of a telehealth program in providing remote healthcare services, such as virtual consultations, monitoring, or therapy sessions. It assesses the feasibility, accessibility, and effectiveness of telehealth interventions in improving patient outcomes and reducing healthcare disparities.",
       "phase": "",
-      "eligibility": "Eligibility criteria for Example Study 5.",
+      "eligibility": "Ability to provide informed consent.",
+      "study_first_submit_date": "2023-04-10",
+      "last_update_submit_date": "2023-10-25"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltrial",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "nct_id": "NCT005",
+      "title": "Orthopedic Surgery Study",
+      "study_type": 1,
+      "overall_status": "Withdrawn",
+      "brief_summary": "This is a brief summary of Example Study 5.",
+      "detail_description": "Orthopedic Surgery Study: This trial compares traditional and minimally invasive surgical techniques for orthopedic procedures, such as joint replacement or fracture repair. It aims to determine the safety, efficacy, and long-term outcomes of different surgical approaches in terms of pain relief, mobility restoration, and postoperative recovery.",
+      "phase": "",
+      "eligibility": "Pregnancy or breastfeeding.",
+      "study_first_submit_date": "2023-04-10",
+      "last_update_submit_date": "2023-10-25"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltrial",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "nct_id": "NCT005",
+      "title": "Immunotherapy Trial",
+      "study_type": 1,
+      "overall_status": "Withdrawn",
+      "brief_summary": "This is a brief summary of Example Study 5.",
+      "detail_description": "Immunotherapy Trial: This trial investigates the use of immunotherapy, which harnesses the body's immune system to fight diseases such as cancer, autoimmune disorders, or infectious diseases. It assesses the effectiveness of immunotherapy agents, such as checkpoint inhibitors or vaccines, in targeting specific disease processes and improving patient outcomes.",
+      "phase": "",
+      "eligibility": "Ability to provide informed consent.",
+      "study_first_submit_date": "2023-04-10",
+      "last_update_submit_date": "2023-10-25"
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltrial",
+    "pk": 8,
+    "fields": {
+      "user": 2,
+      "nct_id": "NCT005",
+      "title": "Vaccine Candidate Study",
+      "study_type": 1,
+      "overall_status": "Withdrawn",
+      "brief_summary": "This is a brief summary of Example Study 5.",
+      "detail_description": "Vaccine Candidate Study: This trial evaluates the safety, immunogenicity, and efficacy of a new vaccine candidate for preventing infectious diseases, such as influenza, COVID-19, or HIV/AIDS. It involves testing the vaccine in human participants to assess its ability to induce an immune response and protect against infection.",
+      "phase": "",
+      "eligibility": "Stable blood pressure control for at least 4 weeks on current antihypertensive medication regimen.",
       "study_first_submit_date": "2023-04-10",
       "last_update_submit_date": "2023-10-25"
     }

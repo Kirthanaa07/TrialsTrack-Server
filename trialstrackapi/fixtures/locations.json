@@ -4,9 +4,9 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "name": "Golden Gate Bridge",
-      "address": "Golden Gate Bridge",
-      "city": "San Francisco",
+      "name": "Central Hospitals",
+      "address": "123 Main Street ",
+      "city": "Ashville",
       "state": "California",
       "zip": 94129,
       "country": "United States"
@@ -17,7 +17,7 @@
     "pk": 2,
     "fields": {
       "user": 1,
-      "name": "Eiffel Tower",
+      "name": "City Clinic",
       "address": "Champ de Mars, 5 Avenue Anatole France",
       "city": "Paris",
       "state": "Rome",
@@ -30,8 +30,8 @@
     "pk": 3,
     "fields": {
       "user": 1,
-      "name": "Sydney Opera House",
-      "address": "Bennelong Point, Sydney NSW 2000",
+      "name": "Sunshine Medical Cente",
+      "address": "789 Oak Street",
       "city": "Sydney",
       "state": "New South Wales",
       "zip": 2000,
@@ -43,10 +43,10 @@
     "pk": 4,
     "fields": {
       "user": 1,
-      "name": "Taj Mahal",
-      "address": "Dharmapuri, Forest Colony, Tajganj",
-      "city": "Agra",
-      "state": "Uttar Pradesh",
+      "name": "Coastal Health Center",
+      "address": "101 Beach Road",
+      "city": "SeaSide",
+      "state": "FL",
       "zip": 282001,
       "country": "India"
     }
@@ -56,12 +56,51 @@
     "pk": 5,
     "fields": {
       "user": 1,
-      "name": "Great Wall of China",
-      "address": "Great Wall of China",
+      "name": "Mountain View Hospital",
+      "address": "222 Pine Lane",
       "city": "Beijing",
       "state": "China",
       "zip": 500000,
       "country": "China"
+    }
+  },
+  {
+    "model": "trialstrackapi.location",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "name": "Medical Center",
+      "address": "23rd avenue",
+      "city": "Beijing",
+      "state": "China",
+      "zip": 500000,
+      "country": "China"
+    }
+  },
+  {
+    "model": "trialstrackapi.location",
+    "pk": 7,
+    "fields": {
+      "user": 2,
+      "name": "Research Clinic",
+      "address": "MainStreet 200",
+      "city": "New York",
+      "state": "NY",
+      "zip": 500000,
+      "country": "United States"
+    }
+  },
+  {
+    "model": "trialstrackapi.location",
+    "pk": 8,
+    "fields": {
+      "user": 2,
+      "name": "Tech Hospital",
+      "address": "Bridge Road",
+      "city": "Nashville",
+      "state": "TN",
+      "zip": 500000,
+      "country": "United States"
     }
   }
 ]

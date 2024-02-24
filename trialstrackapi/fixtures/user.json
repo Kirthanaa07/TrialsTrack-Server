@@ -5,7 +5,16 @@
     "fields": {
       "uid": "EEvVaPbpm6dsCkIU3UddvspLupx1",
       "name": "kirthana",
-      "role": "admin"
+      "role": "admin 1"
+    }
+  },
+  {
+    "model": "trialstrackapi.user",
+    "pk": 2,
+    "fields": {
+      "uid": "h1Pka0gPSvdpwYHQ23m1uUaDBsq2",
+      "name": "Paquita Tyler",
+      "role": "admin 2"
     }
   }
 ]
