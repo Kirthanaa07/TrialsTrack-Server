@@ -1,5 +1,4 @@
 from django.db import models
 
-class StudyType(models.Model):
-  
+class Sponsor(models.Model):
   name = models.CharField(max_length=50)

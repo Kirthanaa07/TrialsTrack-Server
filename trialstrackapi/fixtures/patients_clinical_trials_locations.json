@@ -1,0 +1,38 @@
+[
+  {
+    "model": "trialstrackapi.patientclinicaltriallocation",
+    "pk": 1,
+    "fields": {
+      "patient": 1,
+      "clinical_trial_location":1,
+      "status": "active"
+    }
+  },
+  {
+    "model": "trialstrackapi.patientclinicaltriallocation",
+    "pk": 2,
+    "fields": {
+      "patient": 2,
+      "clinical_trial_location":2,
+      "status": "active"
+    }
+  },
+  {
+    "model": "trialstrackapi.patientclinicaltriallocation",
+    "pk": 3,
+    "fields": {
+      "patient": 4,
+      "clinical_trial_location":5,
+      "status": "active"
+    }
+  },
+  {
+    "model": "trialstrackapi.patientclinicaltriallocation",
+    "pk": 4,
+    "fields": {
+      "patient": 3,
+      "clinical_trial_location":3,
+      "status": "active"
+    }
+  }
+]

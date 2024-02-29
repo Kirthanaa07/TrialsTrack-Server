@@ -14,7 +14,16 @@
     "fields": {
       "uid": "h1Pka0gPSvdpwYHQ23m1uUaDBsq2",
       "name": "Paquita Tyler",
-      "role": "admin 2"
+      "role": "researcher"
+    }
+  },
+  {
+    "model": "trialstrackapi.user",
+    "pk": 3,
+    "fields": {
+      "uid": "h1Pka0gPSvdpwYHQ23m1uUaDBsq2",
+      "name": "Paquita Tyler",
+      "role": "patient"
     }
   }
 ]

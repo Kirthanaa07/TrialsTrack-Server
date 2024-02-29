@@ -1,0 +1,47 @@
+[
+  {
+    "model": "trialstrackapi.researcher",
+    "pk": 1,
+    "fields": {
+      "location": 1,
+      "user": 2,
+      "department": "test"
+    }
+  },
+  {
+    "model": "trialstrackapi.researcher",
+    "pk": 2,
+    "fields": {
+      "location": 1,
+      "user": 2,
+      "department": "test"
+    }
+  },
+  {
+    "model": "trialstrackapi.researcher",
+    "pk": 3,
+    "fields": {
+      "location": 3,
+      "user": 2,
+      "department": "test"
+    }
+  },
+  {
+    "model": "trialstrackapi.researcher",
+    "pk": 4,
+    "fields": {
+      "location": 4,
+      "user": 2,
+      "department": "test"
+    }
+  },
+  {
+    "model": "trialstrackapi.researcher",
+    "pk": 5,
+    "fields": {
+      "location": 5,
+      "user": 2,
+      "department": "test"
+    }
+  }
+]

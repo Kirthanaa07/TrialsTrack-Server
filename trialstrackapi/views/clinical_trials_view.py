@@ -5,10 +5,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from http import HTTPMethod
 from rest_framework import serializers, status
-from trialstrackapi.models import ClinicalTrial, User, StudyType
+from trialstrackapi.models import ClinicalTrial, User
 from trialstrackapi.serializers import (
     ClinicalTrialSerializer,
-    ClinicalTrialsWithStudyTypeSerializer,
 )
 
 
@@ -16,7 +15,7 @@ class ClinicalTrialView(ViewSet):
     def retrieve(self, request, pk):
         try:
             clinical_trial = ClinicalTrial.objects.get(pk=pk)
-            serializer = ClinicalTrialsWithStudyTypeSerializer(clinical_trial)
+            serializer = ClinicalTrialSerializer(clinical_trial)
             return Response(serializer.data)
         except ClinicalTrial.DoesNotExist as ex:
             return Response({"message": ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
@@ -24,27 +23,23 @@ class ClinicalTrialView(ViewSet):
     def list(self, request):
         clinical_trial = ClinicalTrial.objects.all()
         user_id = request.query_params.get("user_id", None)
-        study_type = request.query_params.get("study_type", None)
-        if study_type is not None:
-            clinical_trial = clinical_trial.filter(study_type_id=study_type)
         if user_id is not None:
             clinical_trial = clinical_trial.filter(user_id=user_id)
-        serializer = ClinicalTrialsWithStudyTypeSerializer(clinical_trial, many=True)
+        serializer = ClinicalTrialSerializer(clinical_trial, many=True)
         return Response(serializer.data)
 
     def create(self, request):
         user = User.objects.get(pk=request.data["user_id"])
-        study_type = StudyType.objects.get(pk=request.data["study_type"])
         clinical_trial = ClinicalTrial.objects.create(
             nct_id=request.data["nct_id"],
             title=request.data["title"],
+            study_type=request.data["study_type"],
             overall_status=request.data["overall_status"],
             phase=request.data["phase"],
             eligibility=request.data["eligibility"],
             study_first_submit_date=request.data["study_first_submit_date"],
             last_update_submit_date=request.data["last_update_submit_date"],
             user=user,
-            study_type=study_type,
         )
         serializer = ClinicalTrialSerializer(clinical_trial)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -53,15 +48,14 @@ class ClinicalTrialView(ViewSet):
         clinical_trial = ClinicalTrial.objects.get(pk=pk)
         clinical_trial.nct_id = request.data["nct_id"]
         clinical_trial.title = request.data["title"]
+        clinical_trial.study_type=request.data["study_type"]
         clinical_trial.overall_status = request.data["overall_status"]
         clinical_trial.phase = request.data["phase"]
         clinical_trial.eligibility = request.data["eligibility"]
         clinical_trial.study_first_submit_date = request.data["study_first_submit_date"]
         clinical_trial.last_update_submit_date = request.data["last_update_submit_date"]
         user = User.objects.get(pk=request.data["user_id"])
-        study_type = StudyType.objects.get(pk=request.data["study_type"])
         clinical_trial.user = user
-        clinical_trial.study_type = study_type
         clinical_trial.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)

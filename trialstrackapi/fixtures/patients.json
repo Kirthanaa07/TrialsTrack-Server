@@ -1,0 +1,42 @@
+[
+  {
+    "model": "trialstrackapi.patient",
+    "pk": 1,
+    "fields": {
+      "user": 3,
+      "age": 12,
+      "gender": "female",
+      "dob":"2023-07-20"
+    }
+  },
+  {
+    "model": "trialstrackapi.patient",
+    "pk": 2,
+    "fields": {
+      "user": 3,
+      "age": 12,
+      "gender": "female",
+      "dob":"2023-07-20"
+    }
+  },
+  {
+    "model": "trialstrackapi.patient",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "age": 12,
+      "gender": "female",
+      "dob":"2023-07-20"
+    }
+  },
+  {
+    "model": "trialstrackapi.patient",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "age": 12,
+      "gender": "female",
+      "dob":"2023-07-20"
+    }
+  }
+]

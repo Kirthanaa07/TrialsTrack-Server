@@ -1,0 +1,37 @@
+[
+  {
+    "model": "trialstrackapi.sponsor",
+    "pk": 1,
+    "fields": {
+      "name": "tests"
+    }
+  },
+  {
+    "model": "trialstrackapi.sponsor",
+    "pk": 2,
+    "fields": {
+      "name": "tests"
+    }
+  },
+  {
+    "model": "trialstrackapi.sponsor",
+    "pk": 3,
+    "fields": {
+      "name": "tests"
+    }
+  },
+  {
+    "model": "trialstrackapi.sponsor",
+    "pk": 4,
+    "fields": {
+      "name": "tests"
+    }
+  },
+  {
+    "model": "trialstrackapi.sponsor",
+    "pk": 5,
+    "fields": {
+      "name": "tests"
+    }
+  }
+]
