@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from http import HTTPMethod
 from rest_framework import serializers, status
-from trialstrackapi.models import ClinicalTrial, User
+from trialstrackapi.models import ClinicalTrial, User, Sponsor
 from trialstrackapi.serializers import (
     ClinicalTrialSerializer,
 )
@@ -30,6 +30,7 @@ class ClinicalTrialView(ViewSet):
 
     def create(self, request):
         user = User.objects.get(pk=request.data["user_id"])
+        sponsor = Sponsor.objects.get(pk=request.data["sponsor_id"])
         clinical_trial = ClinicalTrial.objects.create(
             nct_id=request.data["nct_id"],
             title=request.data["title"],
@@ -40,6 +41,7 @@ class ClinicalTrialView(ViewSet):
             study_first_submit_date=request.data["study_first_submit_date"],
             last_update_submit_date=request.data["last_update_submit_date"],
             user=user,
+            sponsor=sponsor,
         )
         serializer = ClinicalTrialSerializer(clinical_trial)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -48,14 +50,16 @@ class ClinicalTrialView(ViewSet):
         clinical_trial = ClinicalTrial.objects.get(pk=pk)
         clinical_trial.nct_id = request.data["nct_id"]
         clinical_trial.title = request.data["title"]
-        clinical_trial.study_type=request.data["study_type"]
+        clinical_trial.study_type = request.data["study_type"]
         clinical_trial.overall_status = request.data["overall_status"]
         clinical_trial.phase = request.data["phase"]
         clinical_trial.eligibility = request.data["eligibility"]
         clinical_trial.study_first_submit_date = request.data["study_first_submit_date"]
         clinical_trial.last_update_submit_date = request.data["last_update_submit_date"]
         user = User.objects.get(pk=request.data["user_id"])
+        sponsor = Sponsor.objects.get(pk=request.data["sponsor_id"])
         clinical_trial.user = user
+        clinical_trial.sponsor = sponsor
         clinical_trial.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -64,21 +68,3 @@ class ClinicalTrialView(ViewSet):
         clinical_trial = ClinicalTrial.objects.get(pk=pk)
         clinical_trial.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
-
-
-class ClinicalTrialSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ClinicalTrial
-        fields = (
-            "id",
-            "nct_id",
-            "title",
-            "study_type",
-            "overall_status",
-            "brief_summary",
-            "detail_description",
-            "phase",
-            "eligibility",
-            "study_first_submit_date",
-            "last_update_submit_date",
-        )

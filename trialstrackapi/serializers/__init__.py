@@ -1,1 +1,1 @@
-from .all import LocationSerializer, ClinicalTrialLocationSerializer, ClinicalTrialSerializer
+from .all import LocationSerializer, ClinicalTrialLocationSerializer, ClinicalTrialSerializer, SponsorSerializer, ResearcherSerializer, PatientSerializer, ClinicalTrialLocationResearcherSerializer, PatientClinicalTrialLocationSerializer

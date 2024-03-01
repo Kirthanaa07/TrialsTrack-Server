@@ -18,12 +18,17 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from trialstrackapi.views import LocationView, ClinicalTrialView, ClinicalTrialLocationView, check_user, register_user
+from trialstrackapi.views import LocationView, ClinicalTrialView, ClinicalTrialLocationView, check_user, register_user, ResearcherView, PatientView, SponsorView, PatientClinicalTrialLocationView, ClinicalTrialLocationResearcherView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r"locations", LocationView, "location")
 router.register(r"clinical_trials", ClinicalTrialView, "clinical_trial")
 router.register(r"clinical_trial_locations", ClinicalTrialLocationView, "clinical_trial_location")
+router.register(r"researchers", ResearcherView, "researcher")
+router.register(r"patients", PatientView, "patient")
+router.register(r"sponsors", SponsorView, "sponsor")
+router.register(r"patients_clinical_trial_locations", PatientClinicalTrialLocationView, "patients_clinical_trial_location")
+router.register(r"clinical_trial_location_researchers", ClinicalTrialLocationResearcherView, "clinical_trial_location_researcher")
 
 urlpatterns = [
     path('register', register_user),

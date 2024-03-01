@@ -2,9 +2,43 @@ from rest_framework import serializers
 from trialstrackapi.models import (
     ClinicalTrial,
     Location,
-    ClinicalTrialLocation,
+    ClinicalTrialLocation, Sponsor, Researcher, Patient, ClinicalTrialLocationResearcher, PatientClinicalTrialLocation
 )
 
+class SponsorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sponsor
+        fields = (
+            "id", "name",
+        )
+        
+class ResearcherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Researcher
+        fields = (
+            "id", "user", "location", "department",
+        )        
+
+class ClinicalTrialLocationResearcherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ClinicalTrialLocationResearcher
+        fields = (
+            "id", "clinical_trial_location", "researcher"
+        )
+
+class PatientClinicalTrialLocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PatientClinicalTrialLocation
+        fields = (
+            "id", "clinical_trial_location", "patient", "status"
+        )
+
+class PatientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Patient
+        fields = (
+            "id", "user", "age", "gender", "dob",
+        ) 
 
 class ClinicalTrialSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,6 +54,7 @@ class ClinicalTrialSerializer(serializers.ModelSerializer):
             "eligibility",
             "study_first_submit_date",
             "last_update_submit_date",
+            "sponsor",
         )
 
 
