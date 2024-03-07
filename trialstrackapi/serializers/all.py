@@ -1,60 +1,64 @@
 from rest_framework import serializers
 from trialstrackapi.models import (
-    ClinicalTrial,
+    Trial,
     Location,
-    ClinicalTrialLocation, Sponsor, Researcher, Patient, ClinicalTrialLocationResearcher, PatientClinicalTrialLocation
+    TrialLocation,
+    Researcher,
+    Patient,
+    PatientTrialLocation,
+    PatientTrialLocationCommunication,
 )
+from trialstrackapi.models.user import User
 
-class SponsorSerializer(serializers.ModelSerializer):
+
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sponsor
-        fields = (
-            "id", "name",
-        )
-        
+        model = User
+        fields = ("id", "uid", "name", "role")
+
+
 class ResearcherSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
         model = Researcher
         fields = (
-            "id", "user", "location", "department",
-        )        
-
-class ClinicalTrialLocationResearcherSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = ClinicalTrialLocationResearcher
-        fields = (
-            "id", "clinical_trial_location", "researcher"
+            "id",
+            "user",
+            "location",
+            "department",
         )
 
-class PatientClinicalTrialLocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PatientClinicalTrialLocation
-        fields = (
-            "id", "clinical_trial_location", "patient", "status"
-        )
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patient
         fields = (
-            "id", "user", "age", "gender", "dob",
-        ) 
+            "id",
+            "user",
+            "age",
+            "gender",
+            "dob",
+        )
 
-class ClinicalTrialSerializer(serializers.ModelSerializer):
+
+class TrialSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ClinicalTrial
+        model = Trial
         fields = (
             "id",
             "nct_id",
             "title",
+            "study_type",
             "overall_status",
+            "brief_title",
             "brief_summary",
             "detail_description",
             "phase",
             "eligibility",
             "study_first_submit_date",
             "last_update_submit_date",
-            "sponsor",
+            "lead_sponsor_name",
         )
 
 
@@ -64,9 +68,44 @@ class LocationSerializer(serializers.ModelSerializer):
         fields = ("id", "name", "address", "city", "state", "zip", "country")
 
 
-class ClinicalTrialLocationSerializer(serializers.ModelSerializer):
+class LocationWithResearchersSerializer(serializers.ModelSerializer):
+    location_researchers = ResearcherSerializer(
+        many=True, source="location_researchers", read_only=True
+    )
+
+    class Meta:
+        model = Location
+        fields = (
+            "id",
+            "name",
+            "address",
+            "city",
+            "state",
+            "zip",
+            "country",
+            "location_researchers",
+        )
+
+
+class TrialLocationSerializer(serializers.ModelSerializer):
     location = LocationSerializer()
 
     class Meta:
-        model = ClinicalTrialLocation
+        model = TrialLocation
         fields = ("id", "location", "status")
+
+
+class PatientTrialLocationSerializer(serializers.ModelSerializer):
+    trial_location = TrialLocationSerializer()
+
+    class Meta:
+        model = PatientTrialLocation
+        fields = ("id", "trial_location", "patient", "status")
+
+
+class PatientTrialLocationCommunicationSerializer(serializers.ModelSerializer):
+    patient_trial_location = PatientTrialLocationSerializer()
+
+    class Meta:
+        model = PatientTrialLocationCommunication
+        fields = ("patient_trial_location", "message", "created_by", "created_date")
