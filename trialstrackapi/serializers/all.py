@@ -42,30 +42,10 @@ class PatientSerializer(serializers.ModelSerializer):
         )
 
 
-class TrialSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Trial
-        fields = (
-            "id",
-            "nct_id",
-            "title",
-            "study_type",
-            "overall_status",
-            "brief_title",
-            "brief_summary",
-            "detail_description",
-            "phase",
-            "eligibility",
-            "study_first_submit_date",
-            "last_update_submit_date",
-            "lead_sponsor_name",
-        )
-
-
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
-        fields = ("id", "name", "address", "city", "state", "zip", "country")
+        fields = ("id", "name", "address", "city", "state", "zip", "country", "geo_lat", "geo_lon")
 
 
 class LocationWithResearchersSerializer(serializers.ModelSerializer):
@@ -94,7 +74,27 @@ class TrialLocationSerializer(serializers.ModelSerializer):
         model = TrialLocation
         fields = ("id", "location", "status")
 
-
+class TrialSerializer(serializers.ModelSerializer):
+    locations = TrialLocationSerializer(many=True, source="trial_locations", read_only=True)
+    class Meta:
+        model = Trial
+        fields = (
+            "id",
+            "nct_id",
+            "title",
+            "study_type",
+            "overall_status",
+            "locations",
+            "brief_title",
+            "brief_summary",
+            "detail_description",
+            "phase",
+            "eligibility",
+            "study_first_submit_date",
+            "last_update_submit_date",
+            "lead_sponsor_name",
+        )
+        
 class PatientTrialLocationSerializer(serializers.ModelSerializer):
     trial_location = TrialLocationSerializer()
 
