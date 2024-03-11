@@ -19,9 +19,9 @@ class PatientView(ViewSet):
     
   def list(self, request):
     patient = Patient.objects.all()
-    user_id = request.query_params.get("user_id", None)
-    if user_id is not None:
-        patient = patient.filter(user_id=user_id)
+    trial_location_id = request.query_params.get("trial_location_id", None)
+    if trial_location_id is not None:
+        patient = patient.filter(trial_location_patients__id=trial_location_id)
     serializer = PatientSerializer(patient, many=True)
     return Response(serializer.data)
   

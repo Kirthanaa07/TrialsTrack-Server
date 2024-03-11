@@ -31,9 +31,10 @@ class TrialView(ViewSet):
 
     def list(self, request):
         trials = Trial.objects.all()
-        user_id = request.query_params.get("user_id", None)
-        if user_id is not None:
-            trials = trials.filter(user_id=user_id)
+        location_id = request.query_params.get("location_id", None)
+        # https://stackoverflow.com/questions/48685555/how-to-filter-joined-models-in-django
+        if location_id is not None:
+            trials = trials.filter(trial_locations__location_id=location_id)
         serializer = TrialSerializer(trials, many=True)
         return Response(serializer.data)
 
