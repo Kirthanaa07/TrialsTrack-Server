@@ -1,0 +1,34 @@
+[
+  {
+    "model": "trialstrackapi.clinicaltriallocationresearcher",
+    "pk": 1,
+    "fields": {
+      "researcher": 2,
+      "clinical_trial_location":2
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocationresearcher",
+    "pk": 2,
+    "fields": {
+      "researcher": 1,
+      "clinical_trial_location":2
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocationresearcher",
+    "pk": 3,
+    "fields": {
+      "researcher": 4,
+      "clinical_trial_location":2
+    }
+  },
+  {
+    "model": "trialstrackapi.clinicaltriallocationresearcher",
+    "pk": 4,
+    "fields": {
+      "researcher": 5,
+      "clinical_trial_location":2
+    }
+  }
+]

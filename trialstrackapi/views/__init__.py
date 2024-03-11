@@ -1,5 +1,8 @@
 from .location_view import LocationView
-from .clinical_trials_view import ClinicalTrialView
-from . study_type_view import StudyTypeView
-from . clinical_trials_locations_view import ClinicalTrialLocationView
+from .trial_view import TrialView
+from .trial_location_view import TrialLocationView
+from .researcher_view import ResearcherView
+from .patient_view import PatientView
+from .patient_trial_location_view import PatientTrialLocationView
+from .patient_trial_location_communication_view import PatientTrialLocationCommunicationView
 from .user_auth import check_user, register_user

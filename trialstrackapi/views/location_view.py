@@ -19,6 +19,9 @@ class LocationView(ViewSet):
     
   def list(self, request):
     location = Location.objects.all()
+    user_id = request.query_params.get("user_id", None)
+    if user_id is not None:
+      location = location.filter(user_id=user_id)
     serializer = LocationSerializer(location, many=True)
     return Response(serializer.data)
   
