@@ -58,6 +58,18 @@ class PatientSerializer(serializers.ModelSerializer):
             "dob",
         )
 
+class PatientWithUserSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+    
+    class Meta:
+        model = Patient
+        fields = (
+            "id",
+            "user",
+            "age",
+            "gender",
+            "dob",
+        )
 
 class PatientWithUserSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -159,10 +171,11 @@ class TrialSerializer(serializers.ModelSerializer):
 class PatientTrialLocationSerializer(serializers.ModelSerializer):
     trial_location = TrialLocationSerializer()
     patient = PatientWithUserSerializer()
+    researcher = ResearcherWithUserSerializer()
 
     class Meta:
         model = PatientTrialLocation
-        fields = ("id", "trial_location", "patient", "status")
+        fields = ("id", "trial_location", "patient", "researcher", "status")
 
 
 class PatientTrialLocationCommunicationSerializer(serializers.ModelSerializer):

@@ -12,7 +12,7 @@ from trialstrackapi.serializers import TrialLocationSerializer
 class TrialLocationView(ViewSet):
     def retrieve(self, request, pk):
         try:
-            trial_location = TrialLocation.get(pk=pk)
+            trial_location = TrialLocation.objects.get(pk=pk)
             serializer = TrialLocationSerializer(trial_location)
             return Response(serializer.data)
         except TrialLocation.DoesNotExist as ex:

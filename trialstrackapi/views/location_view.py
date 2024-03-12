@@ -7,7 +7,7 @@ from http import HTTPMethod
 from rest_framework import serializers, status
 from trialstrackapi.models import Location, User
 from trialstrackapi.serializers import LocationSerializer
-
+from datetime import datetime
 
 class LocationView(ViewSet):
     def retrieve(self, request, pk):
@@ -24,7 +24,6 @@ class LocationView(ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        user = User.objects.get(pk=request.data["user_id"])
         location = Location.objects.create(
             name=request.data["name"],
             address=request.data["address"],
@@ -32,7 +31,9 @@ class LocationView(ViewSet):
             state=request.data["state"],
             zip=request.data["zip"],
             country=request.data["country"],
-            user=user,
+            geo_lat=request.data["geo_lat"],
+            geo_lon=request.data["geo_lon"],
+            created_date=datetime.now()
         )
         serializer = LocationSerializer(location)
         return Response(serializer.data)
@@ -44,9 +45,9 @@ class LocationView(ViewSet):
         location.city = request.data["city"]
         location.state = request.data["state"]
         location.zip = request.data["zip"]
-        location.country = request.data["country"]
-        user = User.objects.get(pk=request.data["user_id"])
-        location.user = user
+        location.country = request.data["country"],
+        location.geo_lat=request.data["geo_lat"],
+        location.geo_lon=request.data["geo_lon"],
         location.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)

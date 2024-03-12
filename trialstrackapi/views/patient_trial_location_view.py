@@ -8,7 +8,9 @@ from rest_framework import serializers, status
 from trialstrackapi.models import Patient, TrialLocation, PatientTrialLocation
 from trialstrackapi.models.researcher import Researcher
 from trialstrackapi.serializers import PatientTrialLocationSerializer
+import logging
 
+logger = logging.getLogger(__name__)
 
 class PatientTrialLocationView(ViewSet):
     def retrieve(self, request, pk):
@@ -23,9 +25,7 @@ class PatientTrialLocationView(ViewSet):
         patient_trial_locations = PatientTrialLocation.objects.all()
         trial_location_id = request.query_params.get("trial_location_id", None)
         if trial_location_id is not None:
-            patient = patient_trial_locations.filter(
-                trial_location_id=trial_location_id
-            )
+            patient_trial_locations = patient_trial_locations.filter(trial_location_id=trial_location_id)
         serializer = PatientTrialLocationSerializer(patient_trial_locations, many=True)
         return Response(serializer.data)
 
@@ -44,7 +44,7 @@ class PatientTrialLocationView(ViewSet):
 
     def update(self, request, pk):
         patient_trial_location = PatientTrialLocation.objects.get(pk=pk)
-        trial_location = PatientTrialLocation.objects.get(
+        trial_location = TrialLocation.objects.get(
             pk=request.data["trial_location_id"]
         )
         patient = Patient.objects.get(pk=request.data["patient_id"])
