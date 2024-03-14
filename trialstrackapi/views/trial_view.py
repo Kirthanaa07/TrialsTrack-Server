@@ -290,4 +290,4 @@ class TrialView(ViewSet):
                                             status=loc_status,
                                         )
 
-        return Response(data, status=status.HTTP_200_OK)
+        return Response(None, status=status.HTTP_200_OK)
