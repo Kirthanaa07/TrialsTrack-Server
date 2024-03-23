@@ -1,8 +1,8 @@
 databases:
   - name: trials-track-db
     plan: free
-    databaseName: trials-track
-    user: trials-track
+    databaseName: trials-track-1234
+    user: trials-track-user1234
 
 services:
   - type: web
