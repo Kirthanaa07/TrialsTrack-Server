@@ -1,5 +1,5 @@
 from .all import (
-    UserSerializer,
+    UserWithResearcherPatientSerializer,
     LocationSerializer,
     LocationWithResearchersSerializer,
     TrialLocationSerializer,

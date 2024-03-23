@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
-from trialstrackapi.views import LocationView, TrialView, TrialLocationView, check_user, register_user, ResearcherView, PatientView, PatientTrialLocationView, PatientTrialLocationCommunicationView
+from trialstrackapi.views import LocationView, TrialView, TrialLocationView, UserView, ResearcherView, PatientView, PatientTrialLocationView, PatientTrialLocationCommunicationView
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r"users", UserView, "users")
 router.register(r"locations", LocationView, "location")
 router.register(r"trials", TrialView, "trial")
 router.register(r"trial_locations", TrialLocationView, "trial_location")
@@ -30,8 +31,6 @@ router.register(r"patient_trial_locations", PatientTrialLocationView, "patient_t
 router.register(r"patient_trial_location_communications", PatientTrialLocationCommunicationView, "patient_trial_location_communication")
 
 urlpatterns = [
-    path('register', register_user),
-    path('checkuser', check_user),
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
 ]

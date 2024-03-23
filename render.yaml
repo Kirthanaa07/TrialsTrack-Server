@@ -1,0 +1,21 @@
+databases:
+  - name: trials-track-db
+    plan: free
+    databaseName: trials-track
+    user: trials-track
+
+services:
+  - type: web
+    plan: free
+    name: trials-track
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "python -m gunicorn trials-track.asgi:application -k uvicorn.workers.UvicornWorker"    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: trials-track-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4

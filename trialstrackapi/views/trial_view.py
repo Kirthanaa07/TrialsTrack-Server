@@ -30,11 +30,12 @@ class TrialView(ViewSet):
             return Response({"message": ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def list(self, request):
-        trial = Trial.objects.all()
-        user_id = request.query_params.get("user_id", None)
-        if user_id is not None:
-            trial = trial.filter(user_id=user_id)
-        serializer = TrialSerializer(trial, many=True)
+        trials = Trial.objects.all()
+        location_id = request.query_params.get("location_id", None)
+        # https://stackoverflow.com/questions/48685555/how-to-filter-joined-models-in-django
+        if location_id is not None:
+            trials = trials.filter(trial_locations__location_id=location_id)
+        serializer = TrialSerializer(trials, many=True)
         return Response(serializer.data)
 
     def create(self, request):
@@ -60,20 +61,19 @@ class TrialView(ViewSet):
         trial = Trial.objects.get(pk=pk)
         trial.nct_id = request.data["nct_id"]
         trial.title = request.data["title"]
-        trial.brief_title = (request.data["brief_title"],)
+        trial.brief_title = request.data["brief_title"]
         trial.study_type = request.data["study_type"]
         trial.overall_status = request.data["overall_status"]
-        trial.brief_summary = (request.data["brief_summary"],)
-        trial.detail_description = (request.data["detail_description"],)
+        trial.brief_summary = request.data["brief_summary"]
+        trial.detail_description = request.data["detail_description"]
         trial.phase = request.data["phase"]
         trial.eligibility = request.data["eligibility"]
         trial.study_first_submit_date = request.data["study_first_submit_date"]
         trial.last_update_submit_date = request.data["last_update_submit_date"]
         trial.lead_sponsor_name = request.data["lead_sponsor_name"]
-        trial.imported_date = (request.data["imported_date"],)
         trial.save()
-
-        return Response(None, status=status.HTTP_204_NO_CONTENT)
+        serializer = TrialSerializer(trial)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, pk):
         trial = Trial.objects.get(pk=pk)
@@ -87,21 +87,21 @@ class TrialView(ViewSet):
         for nct in nct_ids:
             trial = Trial.objects.filter(nct_id=nct)
             if trial.count() != 0:
-                return Response(None, status=status.HTTP_200_OK)
+                continue
             elif trial.count() == 0:
                 url = f"https://clinicaltrials.gov/api/v2/studies/{nct}"
                 response = requests.get(url, timeout=30)
                 data = json.loads(response.content)
 
-                brief_title=''
-                official_title=''
-                study_type=''
-                overall_status=''
-                brief_summary=''
-                detailed_description=''
-                eligibility=''
-                lead_sponsor_name=''
-                
+                brief_title = ""
+                official_title = ""
+                study_type = ""
+                overall_status = ""
+                brief_summary = ""
+                detailed_description = ""
+                eligibility = ""
+                lead_sponsor_name = ""
+
                 if "protocolSection" in data:
                     if "identificationModule" in data["protocolSection"]:
                         if (
@@ -211,6 +211,7 @@ class TrialView(ViewSet):
 
                             for location in locations:
                                 facility = ""
+                                loc_status = ""
                                 if "facility" in location:
                                     facility = location["facility"]
                                     if "city" in location:
@@ -228,11 +229,11 @@ class TrialView(ViewSet):
                                             lon = location["geoPoint"]["lon"]
                                     if "status" in location:
                                         loc_status = location["status"]
-                                        
-                                    contact_name=''
-                                    contact_phone=''
-                                    contact_email=''
-                                    pi_name=''
+
+                                    contact_name = ""
+                                    contact_phone = ""
+                                    contact_email = ""
+                                    pi_name = ""
                                     if "contacts" in location:
                                         contacts = location["contacts"]
                                         for contact in contacts:
@@ -244,10 +245,13 @@ class TrialView(ViewSet):
                                                         contact_phone = contact["phone"]
                                                     if "email" in contact:
                                                         contact_email = contact["email"]
-                                                if contact["role"] == "PRINCIPAL_INVESTIGATOR":
+                                                if (
+                                                    contact["role"]
+                                                    == "PRINCIPAL_INVESTIGATOR"
+                                                ):
                                                     if "name" in contact:
                                                         pi_name = contact["name"]
-                                                        
+
                                     existingLocation = Location.objects.filter(
                                         name=facility
                                     )
@@ -260,26 +264,30 @@ class TrialView(ViewSet):
                                             country=country,
                                             geo_lat=lat,
                                             geo_lon=lon,
-                                            created_date=datetime.now()
+                                            created_date=datetime.now(),
                                         )
                                         TrialLocation.objects.create(
                                             trial=Trial.objects.get(pk=new_trial.id),
-                                            location=Location.objects.get(pk=new_location.id),
+                                            location=Location.objects.get(
+                                                pk=new_location.id
+                                            ),
                                             contact_name=contact_name,
                                             contact_phone=contact_phone,
                                             contact_email=contact_email,
                                             pi_name=pi_name,
-                                            status=loc_status
+                                            status=loc_status,
                                         )
                                     else:
                                         TrialLocation.objects.create(
                                             trial=Trial.objects.get(pk=new_trial.id),
-                                            location=Location.objects.get(pk=existingLocation.id),
+                                            location=Location.objects.get(
+                                                pk=existingLocation[0].id
+                                            ),
                                             contact_name=contact_name,
                                             contact_phone=contact_phone,
                                             contact_email=contact_email,
                                             pi_name=pi_name,
-                                            status=loc_status
+                                            status=loc_status,
                                         )
-                                        
-                return Response(data, status=status.HTTP_200_OK)
+
+        return Response(None, status=status.HTTP_200_OK)

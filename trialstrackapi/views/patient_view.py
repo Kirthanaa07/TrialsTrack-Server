@@ -7,22 +7,23 @@ from http import HTTPMethod
 from rest_framework import serializers, status
 from trialstrackapi.models import Patient, User
 from trialstrackapi.serializers import PatientSerializer
+from trialstrackapi.serializers.all import PatientWithUserSerializer
 
 class PatientView(ViewSet):
   def retrieve(self, request, pk):
     try:
       patient = Patient.objects.get(pk=pk)
-      serializer = PatientSerializer(patient)
+      serializer = PatientWithUserSerializer(patient)
       return Response(serializer.data)
     except Patient.DoesNotExist as ex:
       return Response({"message":ex.args[0]},status=status.HTTP_404_NOT_FOUND)
     
   def list(self, request):
     patient = Patient.objects.all()
-    user_id = request.query_params.get("user_id", None)
-    if user_id is not None:
-        patient = patient.filter(user_id=user_id)
-    serializer = PatientSerializer(patient, many=True)
+    trial_location_id = request.query_params.get("trial_location_id", None)
+    if trial_location_id is not None:
+        patient = patient.filter(trial_location_patients__id=trial_location_id)
+    serializer = PatientWithUserSerializer(patient, many=True)
     return Response(serializer.data)
   
   def create(self, request):
@@ -33,7 +34,7 @@ class PatientView(ViewSet):
       dob=request.data["dob"],
       user=user,
     )
-    serializer = PatientSerializer(patient)
+    serializer = PatientWithUserSerializer(patient)
     return Response(serializer.data)
   
   def update(self, request, pk):
