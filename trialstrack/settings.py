@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 # THIS IS NEW
 CORS_ORIGIN_WHITELIST = (
-    'trials-track.vercel.app',
+    'https://trials-track.vercel.app',
     'http://localhost:3000',
     'http://127.0.0.1:3000'
 )
